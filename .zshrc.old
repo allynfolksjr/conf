@@ -1,0 +1,76 @@
+# Introduction and Status Lines
+
+clear
+echo -ne "Today is "; date
+uname -a
+echo -ne "Uptime:";uptime | awk /'up/
+{print $3,$4}'
+
+setopt extended_glob
+setopt PROMPT_SUBST
+
+# History stuff
+setopt extendedhistory
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+bindkey -e
+
+# Completion config.
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=1
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle :compinstall filename '/da21/d49/nikky/.zshrc'
+autoload -U compinit
+autoload colors zsh/terminfo
+compinit
+# End of lines added by compinstall
+
+# Setting some other useful options.
+setopt autocd
+setopt correctall
+
+# repo tracking
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable hg git bzr svn
+zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1 %a%F{5}]%f '
+zstyle ':vcs_info:hg*:*' check-for-changes true
+zstyle ':vcs_info:*' formats       '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+
+
+# Enable custom prompts.
+autoload -U promptinit
+promptinit
+#prompt walters 
+typeset -U path
+# Useful Aliases
+alias ls="ls -BF --color=auto"
+alias ll='ls -aslFh --color=auto'
+alias gls='ls -aslph --color=auto | grep $1'
+alias gps='ps aux | grep $1'
+alias ps='ps uxww'
+alias cdw='cd `wwwhome`'
+alias cp='cp -ir'
+alias mv='mv -i'
+alias grep='grep --color=auto'
+alias gcal='gcalcli'
+function cdl { cd $1; ls;}
+precmd () { vcs_info }
+# Custom Prompt
+#export PROMPT="--> %B%(?..[%?] )%b%F{cyan}[%T]%f %F{yellow}%n%f@%F{red}%m%f %# "'${vcs_info_msg_0_}'
+#export RPROMPT="%F{magenta}%~%f"
+#export PS1="${vcs_info_msg_0_}"
+export PS1="%l %B%(?..[%?] )%b%F{cyan}[%T]%f %F{yellow}%n%f@%F{red}%m%f:%~ %# "'${vcs_info_msg_0_}'
+man () {
+  /usr/bin/man $@ || (help $@ 2> /dev/null && help $@ | less )
+}
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+#export RI="--format ansi --width 70"

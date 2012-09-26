@@ -1,0 +1,5 @@
+[ui]
+username = Nikky Southerland <nikky@uw.edu>
+editor = vim
+[extensions]
+prompt = ~/hg-prompt/prompt.py
