@@ -1,0 +1,9 @@
+#!/bin/zsh
+rm drupallog
+ssh depts01 "grep 'sites/default/files' /logs/access_log" >> drupallog
+ssh depts02 "grep 'sites/default/files' /logs/access_log" >> drupallog
+ssh depts03 "grep 'sites/default/files' /logs/access_log" >> drupallog
+ssh courses01 "grep 'sites/default/files' /logs/access_log" >> drupallog
+ssh courses02 "grep 'sites/default/files' /logs/access_log" >> drupallog
+perl ./splitter.pl drupallog
+echo "`exec date +%s` `exec date --iso-8601`  `exec wc -l sortedresults.txt` 

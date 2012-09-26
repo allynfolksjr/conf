@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# This script tests whether mysqld is running, and if not, starts mysqld_safe.
+# It is intended to be run as a cron job.
+# The test condition nest was selected from the safe_mysqld script.
+# Initial Script: Adam Graffunder 2009-06-29
+# Modifications: Nikky Southerland 2011-04-08 && 2011-10-31 
+
+sleep ${$:(-2)}
+
+PATH=/usr/local/bin:/usr/bin:/bin
+HOME=`cpw -h $USER`
+
+cd ~ >/dev/null 2>&1 
+
+# If the homedir doesn't exist, die silently.
+if [ $? -ne 0 ]
+then
+  exit
+fi
+
+DATADIR="mysql/data"
+PID_FILE=$DATADIR/`hostname`.pid
+
+# If there exists an old pid file, check if the daemon is already running
+# Note: The switches to 'ps' may depend on your operating system
+if test -f $PID_FILE
+then
+  PID=`cat $PID_FILE`
+  if kill -0 $PID > /dev/null 2> /dev/null
+  then
+    if pgrep -u $USER mysqld | grep $PID > /dev/null
+    then    # The pid contains a mysqld process
+      #echo "A mysqld process already exists with pid: $PID"
+      exit 0
+    fi
+  fi
+fi
+
+echo "mysql.starter restarted your MySQL server on "`hostname`" on "`date`"."
+echo ""
+echo "This mail was sent by a cron job running the mysql.starter script."
+echo "You can find out more about cron jobs by typing \"man cron\" and \"man crontab\" at the command line."
+cd ~/mysql
+./bin/mysqld_safe >/dev/null 2>&1 &
+
