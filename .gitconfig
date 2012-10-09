@@ -2,4 +2,9 @@
 	name = Nikky Southerland
 	email = nikky.southerland@gmail.com
 [core]
-	editor = vim
+  editor = vim
+[mergetool "meld"]
+	cmd = meld
+	trustExitCode = true
+[merge]
+	tool = meld
