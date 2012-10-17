@@ -1,6 +1,6 @@
 [user]
 	name = Nikky Southerland
-	email = nikky.southerland@gmail.com
+	email = nikky@uw.edu 
 [core]
   editor = vim
 [mergetool "meld"]
