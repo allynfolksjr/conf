@@ -12,6 +12,10 @@
 	user = allynfolksjr
 [color]
 	ui = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	diff = auto
 [alias]
   b = branch
   co = checkout
@@ -20,4 +24,6 @@
   st = status
   pu = remote update --prune
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  ll = log --graph --all --format=oneline --decorate
+
 

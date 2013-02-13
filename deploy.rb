@@ -18,6 +18,7 @@ symlink_db << ["#{dropbox}/apps/Sublime\\ Text\\ 2/sublime_text","/usr/bin/subl"
 symlink_db << ["#{dropbox}/sysinfo.pl","#{user_home}/sysinfo.pl"]
 symlink_db << ["#{dropbox}/Repositories","#{user_home}/Repositories"]
 symlink_db << ["#{dropbox}/.rspec","#{user_home}/.rspec"]
+symlink_db << ["#{dropbox}/.zshenv","#{user_home}/.zshenv"]
 
 symlink_db.each do |db|
 	if File.symlink?(db[1])
