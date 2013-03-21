@@ -3,8 +3,8 @@
 # History Stuff
 setopt extendedhistory
 HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 bindkey -e
 
 # Basics
@@ -22,9 +22,9 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="nikky"
+ZSH_THEME="nikky"
 #ZSH_THEME='robbyrussell'
-ZSH_THEME='alanpeabody'
+#ZSH_THEME='alanpeabody'
 #ZSH_THEME="norm"
 
 # Example aliases
@@ -56,3 +56,4 @@ source $ZSH/oh-my-zsh.sh
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
