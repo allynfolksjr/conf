@@ -27,3 +27,5 @@
   ll = log --graph --all --format=oneline --decorate
 
 
+[push]
+	default = simple
