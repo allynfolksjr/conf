@@ -31,6 +31,9 @@ ZSH_THEME="nikky"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias be='bundle exec'
+alias grep=ack-grep
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -59,3 +62,4 @@ export PATH="/usr/local/heroku/bin:$PATH"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$PATH:/usr/local/mysql/bin
